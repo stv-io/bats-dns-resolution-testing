@@ -11,4 +11,4 @@ test_cases:
     - amazon.com
   mx_records:
     - mail.google.com
-    - mail.amazon.com
+    - mail.yahoo.com

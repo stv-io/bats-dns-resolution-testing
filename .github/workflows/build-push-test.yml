@@ -37,7 +37,7 @@ jobs:
             })
 
       - name: Kaniko build
-        uses: aevea/action-kaniko@57fd639926c415a2fa4150ac72230eb5758ff48b
+        uses: aevea/action-kaniko@83ddee1c8b2f6e5b22b0985c5b3a8288f76c25b0
         with:
           image: bats-dns-resolution-testing
           registry: ghcr.io
