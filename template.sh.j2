@@ -1,0 +1,31 @@
+#!/usr/bin/env bats
+
+{% for server in servers %}
+{% if test_cases.a_records is defined %}
+{%- for a in test_cases.a_records %}
+@test "Testing A record resolution of {{ a }} towards {{ server }}" {
+  run timeout {{ timeout}} nslookup -q=a {{ a }} {{ server }}
+  echo "output: $output"
+  [ "$status" -eq 0 ]
+}
+{% endfor %}
+{% endif %}
+
+{% if test_cases.aaaa_records is defined %}
+{%- for aaaa in test_cases.aaaa_records %}
+@test "Testing AAAA record resolution of {{ aaaa }} towards {{ server }}" {
+  run timeout {{ timeout}} nslookup -q=aaaa {{ aaaa }} {{ server }}
+  echo "output: $output"
+  [ "$status" -eq 0 ]
+}
+{% endfor %}
+{% endif %}
+
+{%- for mx in test_cases.mx_records %}
+@test "Testing MX record resolution of {{ mx }} towards {{ server }}" {
+  run timeout {{ timeout}} nslookup -q=mx {{ mx }} {{ server }}
+  echo "output: $output"
+  [ "$status" -eq 0 ]
+}
+{% endfor %}
+{% endfor %}
