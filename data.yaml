@@ -1,0 +1,14 @@
+timeout: 5
+servers:
+ - 1.1.1.1
+ - 8.8.8.8
+test_cases:
+  a_records:
+    - google.com
+    - amazon.com
+  aaaa_records:
+    - google.com
+    - amazon.com
+  mx_records:
+    - mail.google.com
+    - mail.amazon.com
