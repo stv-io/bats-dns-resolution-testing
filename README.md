@@ -45,3 +45,8 @@ ok 12 Testing MX record resolution of mail.yahoo.com towards 8.8.8.8
 removed 'dns-lookup-tests.bats'
 
 ```
+
+## TODO and ideas
+
+- Add debug capability
+- Consider different approaches to passing config
