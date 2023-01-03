@@ -54,6 +54,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
+          context: .
+          platforms: linux/amd64,linux/arm64        
           push: true
           tags: ghcr.io/stv-io/bats-dns-resolution-testing:${{ github.event.pull_request.head.sha }} 
 
@@ -68,4 +70,4 @@ jobs:
 
     steps:
       - name: run tests
-        run: echo "testing"
+        run: /usr/local/bin/bash /entrypoint.sh
