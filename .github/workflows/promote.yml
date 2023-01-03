@@ -1,5 +1,4 @@
-name: Re-tag and copy to released version
-
+name: Re-tag container and copy to versioned tag
 on:
   push:
     branches: [ main ]
@@ -25,10 +24,9 @@ jobs:
           echo "CONTAINER_TAG $CONTAINER_TAG"
           echo "CONTAINER_TAG=$CONTAINER_TAG" >> $GITHUB_ENV
 
-
       - name: "Skopeo promote previous PR's build"
         run: |
           echo "DEBUG Version $VERSION"
           echo ${{ secrets.GITHUB_TOKEN }} | skopeo login ghcr.io -u stv-io --password-stdin
           echo "Promoting built image to release"
-          skopeo copy docker://ghcr.io/stv-io/bats-dns-resolution-testing/bats-dns-resolution-testing:${CONTAINER_TAG} docker://ghcr.io/stv-io/bats-dns-resolution-testing/bats-dns-resolution-testing:v${VERSION}
+          skopeo copy docker://ghcr.io/stv-io/bats-dns-resolution-testing:${CONTAINER_TAG} docker://ghcr.io/stv-io/bats-dns-resolution-testing/bats-dns-resolution-testing:v${VERSION}
